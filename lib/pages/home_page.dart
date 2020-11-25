@@ -2,6 +2,7 @@ import 'package:chapter/bloc/scans_bloc.dart';
 import 'package:chapter/models/scan_model.dart';
 import 'package:chapter/pages/contact_page.dart';
 import 'package:chapter/pages/results_page.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,9 +45,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _getFloatingActionButton() {
     return FloatingActionButton(
-      onPressed: () {
-        _scanBloc.addScan(new ScanModel(value: "geo:-34.910164,-56.164573"));
-      },
+      onPressed: _scanQr,
       child: Icon(Icons.camera),
     );
   }
@@ -77,6 +76,21 @@ class _HomePageState extends State<HomePage> {
       return ResultsPage();
     } else {
       return ContactPage();
+    }
+  }
+
+  void _scanQr() async {
+    try {
+      var scanResult = await BarcodeScanner.scan();
+      var scanValue = scanResult.rawContent;
+
+      if (scanResult.type != ResultType.Cancelled &&
+          scanValue != null &&
+          scanValue.isNotEmpty) {
+        _scanBloc.addScan(ScanModel(value: scanValue));
+      }
+    } catch (error) {
+      print("Ocurrio un error");
     }
   }
 }
