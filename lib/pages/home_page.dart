@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
   Widget _getFloatingActionButton() {
     return FloatingActionButton(
       onPressed: () {
-        _scanBloc.addScan(new ScanModel(value: "http://www.google.com"));
+        _scanBloc.addScan(new ScanModel(value: "geo:-34.910164,-56.164573"));
       },
       child: Icon(Icons.camera),
     );

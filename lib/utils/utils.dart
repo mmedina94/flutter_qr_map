@@ -10,6 +10,6 @@ void launchURL(BuildContext context, ScanModel scanModel) async {
       print("error");
     }
   } else {
-    //Ir al mapa
+    Navigator.pushNamed(context, 'map', arguments: scanModel);
   }
 }

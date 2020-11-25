@@ -1,4 +1,5 @@
 import 'package:chapter/pages/home_page.dart';
+import 'package:chapter/pages/map_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home': (BuildContext context) => HomePage(),
+        'map': (BuildContext context) => MapPage(),
       },
     );
   }
