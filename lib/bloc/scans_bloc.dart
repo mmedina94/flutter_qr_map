@@ -15,26 +15,26 @@ class ScansBloc {
   }
 
   ScansBloc._internal() {
-    _loadStream();
+    loadStream();
   }
 
-  _loadStream() {
+  loadStream() {
     _streamController.sink.add(_scans);
   }
 
   addScan(ScanModel scan) {
     _scans.add(scan);
-    _loadStream();
+    loadStream();
   }
 
   removeScan(int position) {
     _scans.removeAt(position);
-    _loadStream();
+    loadStream();
   }
 
   removeAll() {
     _scans.clear();
-    _loadStream();
+    loadStream();
   }
 
   dispose() {

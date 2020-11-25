@@ -1,3 +1,5 @@
+import 'package:chapter/bloc/scans_bloc.dart';
+import 'package:chapter/models/scan_model.dart';
 import 'package:chapter/pages/contact_page.dart';
 import 'package:chapter/pages/results_page.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _scanBloc = new ScansBloc();
+
   final _menuOptions = [
     {'title': 'Resultados', 'icon': Icons.scanner},
     {'title': 'Contactos', 'icon': Icons.contact_mail},
@@ -40,7 +44,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget _getFloatingActionButton() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        _scanBloc.addScan(new ScanModel(value: "http://www.google.com"));
+      },
       child: Icon(Icons.camera),
     );
   }
